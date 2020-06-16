@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="appage.css">
+</head>
+<body>
+	<header>
+		<div>the minimalist</div>
+		<div>the normalist</div>
+		<div>the customizer</div>
+	</header>
+	<!-- Background  -->
+	<div id="background">
+		<div id="bglable">Background</div>
+		<div id="bgchoices">
+			<label for="choosecolor">Color<input type="checkbox" id="choosecolor"></label>
+			<label for="choosewallpaper">wallpaper<input type="checkbox" id="choosewallpaper"></label>
+		</div>
+		<div id="bginputs">
+			<div id="bgcolor">
+				<label for="bgcolor">Choose Color</label>
+				<input type="color" name="bgcolor" id="bgcolor">
+			</div>
+			<div id="bgimage">
+			<label for="bgimage">Add background image</label>
+				<input type="file" name="bgimage" id="bgimage" multiple>
+				<div>preview
+					<!-- ajax -->
+					<div id="preview"></div>
+				</div>
+			</div>
+			<div id="bgimages">
+				<!-- localstroage-->
+				<div id="bglocalimages">
+					
+				</div>
+				<input type="button" name="bgsubmit" value="change background">
+			</div>
+		</div>
+	</div>
+	<!-- postes -->
+	<div id="postes">
+		<div id="postlable">Background</div>
+		<div id="postchoices">
+			<label for="postcolor">Color<input type="checkbox" id="postcolor"></label>
+			<label for="postheader">header<input type="checkbox" id="postwallpaper"></label>
+			<label for="postcomment">comment<input type="checkbox" id="postcomment"></label>
+			<label for="postall">all<input type="checkbox" id="postall"></label>
+			<label for="postrandom">random<input type="checkbox" id="postrandom"></label>
+			<label for="postrandomall">random all<input type="checkbox" id="postrandomall"></label>
+			<label for="postbyname">Comming Soon<input type="checkbox" id="postbyname"></label>
+		</div>
+		<div id="postinputs">
+			<div id="postcolors">
+				<label for="postcolorpicker">Choose Color</label>
+				<input type="color" name="postcolors" id="postcolorpicker">
+			</div>
+			<div id="postimages">
+			<label for="postimage">Add background image</label>
+				<input type="file" name="postimage" id="postimage" multiple>
+				<div>preview
+					<!-- ajax -->
+					<div id="postpreview"></div>
+				</div>
+			</div>
+			<div id="postimagecont">
+				<!-- localstroage-->
+				<div id="postlocalimages"></div>
+
+				<input type="button" name="bgsubmit" value="change post background">
+			</div>
+		</div>
+	</div>
+	
+	<script src="apppage.js"></script>
+</body>
+</html>

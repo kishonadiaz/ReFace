@@ -1,0 +1,50 @@
+{
+	"name":"Reface",
+	"version":"0.1",
+	"manifest_version":2,
+
+	"browser_action":{
+		
+	},
+
+	"background":{
+		"scripts":["js/background.js"]
+	},
+	"web_accessible_resources":
+	[
+		"js/libs/*",
+		"/*.png",
+		"/*.gif",
+		"/*.css",
+		"images/*.png",
+	     "javascript/*.js",
+	     "html/* .html",
+	     "app/js/apppage.js",
+	     "app/apppage.html",
+	     "app/*",
+	     "chrome-extension://*"
+	],
+	"content_scripts":[
+		{
+			"matches":["http://*/*","https://*/*"],
+			"css":["css/reface.css"],
+			"js":["js/worker.js","js/reface.js"
+			]
+		}
+	],
+	"offline_enabled":true,
+	"permissions":[
+		"activeTab",
+		"tabs",
+		"http://*/*",
+		"https://*/*",
+		"*://*/*",
+		"file://*",
+		"file://*/*",
+		"<all_urls>",
+		"windows",
+		"storage",
+		"file:///app/*/*",
+		"unlimitedStorage"
+	]
+}
