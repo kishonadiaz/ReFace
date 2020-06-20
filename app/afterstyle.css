@@ -1,0 +1,11 @@
+.bgcolorpickerdiv{
+	/*position: absolute;*/
+	border: 1px solid green;
+	visibility: collapse;
+	width: 20px;
+	height: 20px;
+}
+#bgcolorpickerOpen{
+	visibility: collapse;
+	width: 0;
+}

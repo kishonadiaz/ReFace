@@ -2,77 +2,1338 @@
 <html>
 <head>
 	<title></title>
+	
+	<link rel="stylesheet" type="text/css" href="themes/classic.min.css">
+	<link rel="stylesheet" type="text/css" href="themes/monolith.min.css">
+	<link rel="stylesheet" type="text/css" href="themes/nano.min.css">
 	<link rel="stylesheet" type="text/css" href="appage.css">
+
+	<script type="text/javascript" src="pickr.min.js"></script>
+	<script type="text/javascript" src="pickr.es5.min.js"></script>
+
 </head>
 <body>
-	<header>
-		<div>the minimalist</div>
-		<div>the normalist</div>
-		<div>the customizer</div>
-	</header>
-	<!-- Background  -->
-	<div id="background">
-		<div id="bglable">Background</div>
-		<div id="bgchoices">
-			<label for="choosecolor">Color<input type="checkbox" id="choosecolor"></label>
-			<label for="choosewallpaper">wallpaper<input type="checkbox" id="choosewallpaper"></label>
-		</div>
-		<div id="bginputs">
-			<div id="bgcolor">
-				<label for="bgcolor">Choose Color</label>
-				<input type="color" name="bgcolor" id="bgcolor">
-			</div>
-			<div id="bgimage">
-			<label for="bgimage">Add background image</label>
-				<input type="file" name="bgimage" id="bgimage" multiple>
-				<div>preview
-					<!-- ajax -->
-					<div id="preview"></div>
+	<nav>
+		<div id="navcont">
+			<div>
+			<!-- Ajax -->
+				<div>ReFace <span id="currentsite">FaceBook</span>
+					<div id="settings"></div>
 				</div>
 			</div>
-			<div id="bgimages">
-				<!-- localstroage-->
-				<div id="bglocalimages">
-					
-				</div>
-				<input type="button" name="bgsubmit" value="change background">
-			</div>
 		</div>
-	</div>
-	<!-- postes -->
-	<div id="postes">
-		<div id="postlable">Background</div>
-		<div id="postchoices">
-			<label for="postcolor">Color<input type="checkbox" id="postcolor"></label>
-			<label for="postheader">header<input type="checkbox" id="postwallpaper"></label>
-			<label for="postcomment">comment<input type="checkbox" id="postcomment"></label>
-			<label for="postall">all<input type="checkbox" id="postall"></label>
-			<label for="postrandom">random<input type="checkbox" id="postrandom"></label>
-			<label for="postrandomall">random all<input type="checkbox" id="postrandomall"></label>
-			<label for="postbyname">Comming Soon<input type="checkbox" id="postbyname"></label>
-		</div>
-		<div id="postinputs">
-			<div id="postcolors">
-				<label for="postcolorpicker">Choose Color</label>
-				<input type="color" name="postcolors" id="postcolorpicker">
-			</div>
-			<div id="postimages">
-			<label for="postimage">Add background image</label>
-				<input type="file" name="postimage" id="postimage" multiple>
-				<div>preview
-					<!-- ajax -->
-					<div id="postpreview"></div>
+	</nav>
+	<div id="currenttemp">	
+		<header >
+			<div id="quickedittitle">Quick Stylization</div>
+			<div id="quickcont">
+				<div id="innercont">
+					<div>The Minimalist</div>
+					<div>The Normalist</div>
+					<div>The Customizer</div>
 				</div>
 			</div>
-			<div id="postimagecont">
-				<!-- localstroage-->
-				<div id="postlocalimages"></div>
+		</header>
+		<!-- Background  -->
+		<div id="background">
+			<div id="bglable">Background</div>
+			<div id="bgchoices">
+				<div class="conts">
+					<div class="pickercont">
+					<label id="choosecolorlable" for="choosecolor">Color
+						<input type="checkbox" id="choosecolor" data-open=".bgcolorpickerdiv"></label>
+						<div class="bgcolorpickerdiv">
+							<div >
+								<div id="bgcolorpicker" class="bgcolorpickerclass">
+									<div class="bgpicker"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="bgimagecont">
+					<label for="choosewallpaper">wallpaper<input type="checkbox" id="choosewallpaper" data-open=".bgcontrol"></label>
+					<div class="bgimage bgcontrol"> <input type="file" name="bgimgfile" class="bgimgfile" data-open=".bgcontrol" multiple placeholder="Add Background Image">
+						<div class="previewpoppup">preview
+							<!-- ajax -->
+							<div id="preview"></div>
+						</div>
+						
 
-				<input type="button" name="bgsubmit" value="change post background">
+					</div>
+
+				</div>
+				<div id="bgimages" class="bgcontrol">
+							<!-- localstroage-->
+							<input type="button" name="bgsubmit" class="chooseimg" value="change background">
+							<div id="bglocalimages">
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+							</div>
+							
+						</div>
+			</div>	
+		</div>
+		<!-- postes -->
+		<div id="postes">
+			<div id="postlable">Posts Styling</div>
+			<div id="postchoices">
+				<label for="postcolor">Color<input type="checkbox" id="postcolor" data-open=".postcolors"></label>
+
+				<div class="postcolors">
+					<div class="conts">
+						<div class="pickercont">
+							<label for="postheader">header<input type="checkbox" id="postheader"></label>
+							<div class="postheadpicker colorpickers"></div>
+						</div>
+					</div>
+					<div class="conts">
+						<div class="pickercont">
+							<label for="postcomment">comment<input type="checkbox" id="postcomment"></label>
+							<div class="postcommentpicker colorpickers"></div>
+						</div>
+					</div>
+					<div class="conts">
+						<div class="pickercont">
+							<label for="postall">all<input type="checkbox" id="postall"></label>
+							<div class="postallpicker colorpickers"></div>
+						</div>
+					</div>
+					<div class="conts">
+						<div class="pickercont">
+							<label for="postrandomheader">random header<input type="checkbox" id="postrandomheader"></label>
+						<div class="postrandomheaderpicker colorpickers"></div>
+						</div>
+					</div>
+					<div class="conts">
+						<div class="pickercont">
+							<label for="postrandomcomment">random comment<input type="checkbox" id="postrandomcomment"></label>
+						<div class="postrandomcommentpicker colorpickers"></div>
+						</div>
+					</div>
+					<div class="conts">
+						<div class="pickercont">
+							<label for="postrandomall">random<input type="checkbox" id="postrandomall"></label>
+						<div class="postrandomallpicker colorpickers"></div>
+						</div>
+					</div>
+				</div>
+
+				<label for="postwall">Wallpaper<input type="checkbox" id="postwall" data-open=".postwallpaper"></label>
+				<div class="postwallpaper">
+
+					<div class="conts">
+						<label for="postpaperheader">wallpaper header<input type="checkbox" id="postpaperheader"></label>
+						<div id="postheaderimage" class="bgimage"> 
+							<input type="file" name="bgimage" id="posthinputimage" multiple placeholder="Add Background Image">
+							<div class="previewpoppup">preview
+								<!-- ajax -->
+								<div id="postwallpreview"></div>
+							</div>
+						</div>
+					</div>
+					<div class="bgimages">
+						<!-- localstroage-->
+						<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
+						<div id="bglocalimages">
+						</div>
+						
+					</div>
+
+					<div class="conts">
+						<label for="postpapercomment">wallpaper comment
+							<input type="checkbox" id="postpapercomment">
+						</label>
+						<div id="postheaderimage" class="bgimage"> 
+							<input type="file" name="bgimage" id="posthinputimage" multiple placeholder="Add Background Image">
+							<div class="previewpoppup">preview
+								<!-- ajax -->
+								<div id="postwallpreview"></div>
+								</div>
+						</div>
+					</div>
+					<div class="bgimages">
+							<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
+								<!-- localstroage-->
+							<div id="bglocalimages">
+							</div>		
+					</div>
+
+					<div class="conts">
+						<label for="postpaperrandom">wallpaper random<input type="checkbox" id="postpaperrandom"></label>
+						<div id="postheaderimage" class="bgimage"> <input type="file" name="bgimage" id="posthinputimage" multiple placeholder="Add Background Image">
+							<div class="previewpoppup">preview
+								<!-- ajax -->
+								<div id="postwallpreview"></div>
+							</div>
+						</div>
+					</div>
+					<div class="bgimages">
+						<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
+						<!-- localstroage-->
+						<div id="bglocalimages">
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+						</div>
+					</div>
+
+					<div class="conts">
+						<label for="postpaperrandomall">wallpaper random all<input type="checkbox" id="postpaperrandomall"></label>
+						<div id="postheaderimage" class="bgimage"> 
+							<input type="file" name="bgimage" id="posthinputimage" multiple placeholder="Add Background Image">
+							<div class="previewpoppup">preview
+								<!-- ajax -->
+								<div id="postwallpreview"></div>
+							</div>
+						</div>
+					</div>
+					<div class="bgimages">
+						<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
+						<!-- localstroage-->
+						<div id="bglocalimages">
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- custom -->
+		<div id="customizer">
+			<div id="customizerlable">Customizer</div>
+			<div class="commingsoon">
+				<div class="blackscreen"><span class="commingsoontext">Comming Soon</span></div>
+			</div>
+			<div class="container">
+
+				
+				<div class="switch"><div class="toggle"></div></div>
+				<div class="toolcont">
+					<div id="tools">
+						<div id="mover" class="toolboxes"></div>
+						<div id="minimizer" class="toolboxes"></div>
+						<div id="editor" class="toolboxes"></div>
+					</div>
+				</div>
+				<div class="listcont">
+					<ul class="draggableelements">
+						<!-- localstorage and cookies -->
+						<li>
+							<span class="listitems draglisttitle">Draggables</span>
+							<div class="infoitem">
+									<div class="sub">Element Name</div>
+									<div class="sub">Date Modified</div>
+									<div class="sub">Edit</div>
+									<div class="sub">Delete</div>
+							</div>
+							<ul id="draggables">
+								<li class="empty litems dragitem">
+									List Empty
+								</li>
+<!-- 								<li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems dragitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li>
+								 -->
+							</ul>
+						</li>
+					</ul>
+					
+					<ul class="trayableelements">
+						<li>
+							<span class="listitems traytitle">Tray Items</span>
+							<div class="infoitem">
+									<div class="sub">Element Name</div>
+									<div class="sub">Date Modified</div>
+									<div class="sub">Edit</div>
+									<div class="sub">Delete</div>
+							</div>
+							<ul id="tray">
+								<li class="empty litems trayitem">
+									List Empty
+								</li>
+<!-- 								<li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems trayitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li>
+								 -->
+							</ul>
+						</li>
+					</ul>
+					<ul class="generalelements">
+						<li>
+							<span class="listitems generaltitle" >General Items</span>
+							<div class="infoitem">
+									<div class="sub">Element Name</div>
+									<div class="sub">Date Modified</div>
+									<div class="sub">Edit</div>
+									<div class="sub">Delete</div>
+							</div>
+							<ul id="generals">
+								<li class="empty litems generalitem">List Empty</li>
+<!-- 								<li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li><li class="litems generalitem">
+									<div class="litemcont">
+										<div class="elemname">Element Name</div>
+										<div class="elemdate">Date Modified</div>
+										<div class="elemedit">Edit</div>
+										<div class="elemdelete">Delete</div>
+									</div>
+								</li> -->
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+
 			</div>
 		</div>
 	</div>
-	
 	<script src="apppage.js"></script>
+	<!-- <link rel="stylesheet" type="text/css" href="afterstyle.css"> -->
 </body>
 </html>

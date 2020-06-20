@@ -28,8 +28,7 @@
 		{
 			"matches":["http://*/*","https://*/*"],
 			"css":["css/reface.css"],
-			"js":["js/worker.js","js/reface.js"
-			]
+			"js":["js/worker.js","js/reface.js"]
 		}
 	],
 	"offline_enabled":true,

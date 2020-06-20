@@ -1,0 +1,1 @@
+var bod = document.querySelector("body");
