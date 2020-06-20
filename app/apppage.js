@@ -1,52 +1,34 @@
-// const pickr = Pickr.create({
-// 	 el: '.picker',
-// 	 theme: 'classic',
+var port = chrome.runtime.connect({name:"appside"});
 
-// 	 swatches: [
-//         'rgba(244, 67, 54, 1)',
-//         'rgba(233, 30, 99, 0.95)',
-//         'rgba(156, 39, 176, 0.9)',
-//         'rgba(103, 58, 183, 0.85)',
-//         'rgba(63, 81, 181, 0.8)',
-//         'rgba(33, 150, 243, 0.75)',
-//         'rgba(3, 169, 244, 0.7)',
-//         'rgba(0, 188, 212, 0.7)',
-//         'rgba(0, 150, 136, 0.75)',
-//         'rgba(76, 175, 80, 0.8)',
-//         'rgba(139, 195, 74, 0.85)',
-//         'rgba(205, 220, 57, 0.9)',
-//         'rgba(255, 235, 59, 0.95)',
-//         'rgba(255, 193, 7, 1)'
-//     ],
 
-//     components: {
 
-//         // Main components
-//         preview: true,
-//         opacity: true,
-//         hue: true,
+function sendMessage(to,message={}){
+  
+  if(port != undefined)
+    port.postMessage({"to":to,"from":"appside","message":message});
+}
 
-//         // Input / output Options
-//         interaction: {
-//             hex: true,
-//             rgba: true,
-//             hsla: true,
-//             hsva: true,
-//             cmyk: true,
-//             input: true,
-//             clear: true,
-//             save: true
-//         }
-//     }
+function messageListener(){
+  if(port != undefined){
+    port.onMessage.addListener(function(msg){
+      console.log(msg);
+    });
+  }
+};
 
-// })
-
+sendMessage("reface",{"background_color":"red"});
+messageListener();
 var pickeroptions = {}
 var pickerslist = ["bgpicker","postheadpicker","postcommentpicker","postallpicker","postrandomheaderpicker","postrandomcommentpicker","postrandomallpicker"]
 
 let pickers = {};
 var iscustomcolor = false;
 var customcolor = "";
+var createswatchbtn = document.createElement("button");
+createswatchbtn.setAttribute("type","button");
+createswatchbtn.setAttribute("style","color: white");
+createswatchbtn.setAttribute("aria-label","color swatch");
+createswatchbtn.innerHTML = "+";
 
 for(var[i,key] of Object.entries(pickerslist)){
 
@@ -77,6 +59,7 @@ for(var[i,key] of Object.entries(pickerslist)){
 	        'rgba(205, 220, 57, 0.9)',
 	        'rgba(255, 235, 59, 0.95)',
 	        'rgba(255, 193, 7, 1)'
+	        
 	    ],
 
 	    components: {
@@ -94,14 +77,59 @@ for(var[i,key] of Object.entries(pickerslist)){
 	            hsva: true,
 	            cmyk: true,
 	            input: true,
+	            cancel:true,
 	            clear: true,
-	            save: true
+	            save: true,
+
 	        }
 	    }
 
 	})
-}
 
+	
+	pickers[key].on('init',function(instance){
+		console.log(instance.getRoot());
+		console.log(instance.getRoot().button);
+		console.log(instance.getRoot().swatches);
+		var pcr_swatches = document.querySelectorAll(".pcr_swatches");
+		// console.log(pcr_swatches,instance.getRoot().app.childNodes[3]);
+		//instance.getRoot().app.childNodes[3].appendChild(createswatchbtn);
+		//pcr_swatches.appendChild(createswatchbtn);
+		//instance.getRoot().swatches[0].appendChild(createswatchbtn);
+		//instance.getRoot().swatches.parentNode.childNodes[3].appendChild(createswatchbtn);
+		//console.log(instance.getRoot().swatches.parentNode.childNodes[3].appendChild);
+	});
+
+	pickers[key].on('hide',function(instance){
+		
+	});
+
+	pickers[key].on('show',function(color,instance){
+		instance.getRoot().swatches.appendChild(createswatchbtn)
+	});
+	pickers[key].on('save',function(color,instance){
+		
+		instance.hide();
+	});
+
+	pickers[key].on('clear',function(instance){
+		
+	});
+	pickers[key].on('cancel',function(instance){
+		instance.hide();
+	});
+	pickers[key].on('change',function(color,instance){
+		
+	});
+	pickers[key].on('changestop',function(instance){
+		
+	});
+	pickers[key].on('swatchselect',function(color,instance){
+		
+	});
+
+}
+console.log(pickers);
 
 function openclosed(elem){
 	//elem
@@ -156,9 +184,6 @@ function openclosed(elem){
 			elem.classList.add("postwallpaperOpen");
 		}
 	}
-
-
-
 }
 function closeopened(elem){
 	var picr =  document.querySelectorAll(".pickr");
@@ -206,16 +231,14 @@ function closeopened(elem){
 			elem.classList.remove("postwallpaperOpen");
 		}
 	}
-
-
 }
+
 var labels = document.querySelectorAll("label");
 var labelbeef = document.querySelectorAll("label:before");
 var checkboxes = document.querySelectorAll("input[type='checkbox']");
 //console.log(checkboxes,labels,labelbeef);
 for(var i =0; i < (labels.length); i++){
 	if(labels[i].lastChild.tagName == "INPUT"){
-		
 		labels[i].lastChild.addEventListener("change",function(ev){
 			if(ev.target.checked){
 					if(ev.target.getAttribute("data-open") != undefined){
