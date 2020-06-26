@@ -724,7 +724,7 @@ function savedelaction(e){
 	// console.log(e.target.getBoundingClientRect().left,e.clientX,,,(e.target.getBoundingClientRect().right-e.target.getBoundingClientRect().left))
 		console.log(e.target,i);
 		if(e.type === "click"){
-	
+		
 			console.log(e,"clicked");
 			if(e.target.getAttribute("data-isclicked") === "false"){
 				if( e.clientX >= e.target.getBoundingClientRect().right-10){
@@ -741,6 +741,26 @@ function savedelaction(e){
 						openpreview.push(e.target.previousElementSibling);
 						e.target.previousElementSibling.setAttribute("data-openedby",e.target.getAttribute("id"));
 						
+					}
+					console.log(e.target.parentElement.firstElementChild);
+					if(e.target.parentElement.firstElementChild.classList.contains("predelconfirm")){
+						if(e.target.parentElement.firstElementChild.classList.contains("predelconfirmClose"))
+							e.target.parentElement.firstElementChild.classList.remove("predelconfirmClose");
+						var pbtns = e.target.parentElement.firstElementChild.children;
+						for(var [k,kitems] of Object.entries(pbtns)){
+							if(kitems.classList.contains("pyesconfirm")){
+								kitems.addEventListener("click",function(ek){
+									//e.target.remove();
+									e.target.parentElement.style.cssText = "display:none";
+								});
+							}
+							if(kitems.classList.contains("pnoconfirm")){
+								kitems.addEventListener("click",function(ek){
+									if(!e.target.parentElement.firstElementChild.classList.contains("predelconfirmClose"))
+										e.target.parentElement.firstElementChild.classList.add("predelconfirmClose");
+								});
+							}
+						}
 					}
 
 				}
@@ -759,6 +779,8 @@ function savedelaction(e){
 						e.target.previousElementSibling.setAttribute("data-openedby",e.target.getAttribute("id"));
 						
 					}
+					
+
 				}
 			}
 
@@ -767,7 +789,7 @@ function savedelaction(e){
 		
 		if(e.type === "mouseover"){
 			e.target.addEventListener("mousemove",function(ev){
-				console.log(clicks);
+				//console.log(clicks);
 				
 				if(ev.target.getAttribute("data-isclicked")=== "false"){	
 					if( ev.clientX >= ev.target.getBoundingClientRect().right-10){
@@ -899,9 +921,10 @@ function outi(e){
 				}				
 			}
 
-function savepreviewimages(){
+function savepreviewimages(r){
 	var save = document.querySelectorAll(".savepreview");
-
+	var preview = document.querySelectorAll(".previewitem");
+	console.log(preview);
 	for(var [i,saveing] of Object.entries(save)){
 		saveing.addEventListener("click",function(e){
 			var preview = document.querySelectorAll(".previewitem");
@@ -913,6 +936,7 @@ function savepreviewimages(){
 					}
 					if(prevs.getAttribute("data-side") === "right"){
 						// remove from priview no save
+						console.log(prevs)
 					}
 				}
 			}
@@ -996,5 +1020,6 @@ getimages();
 if(previewimages != undefined){
 	savedordelete(previewimages);
 	prviewclear();
+	savepreviewimages(previewimages)
 }
 
