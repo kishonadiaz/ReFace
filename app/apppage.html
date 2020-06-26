@@ -3,11 +3,13 @@
 <head>
 	<title></title>
 	
+
 	<link rel="stylesheet" type="text/css" href="themes/classic.min.css">
 	<link rel="stylesheet" type="text/css" href="themes/monolith.min.css">
 	<link rel="stylesheet" type="text/css" href="themes/nano.min.css">
 	<link rel="stylesheet" type="text/css" href="appage.css">
 
+	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="pickr.min.js"></script>
 	<script type="text/javascript" src="pickr.es5.min.js"></script>
 
@@ -55,10 +57,40 @@
 				</div>
 				<div id="bgimagecont">
 					<label for="choosewallpaper">wallpaper<input type="checkbox" id="choosewallpaper" data-open=".bgcontrol"></label>
-					<div class="bgimage bgcontrol"> <input type="file" name="bgimgfile" class="bgimgfile" data-open=".bgcontrol" multiple placeholder="Add Background Image">
-						<div class="previewpoppup">preview
+					<div class="bgimage bgcontrol"> <input type="file" id="bgimginput" name="bgimgfile" class="bgimgfile" data-open=".bgcontrol" data-preview="previewitemcont" multiple placeholder="Add Background Image">
+						<span>preview</span>
+						<div class="previewpoppup">
 							<!-- ajax -->
-							<div id="preview"></div>
+
+							<div class="preview">
+								<div class="previewitemcont">
+									<div class="predelconfrim">
+										<span>Remove?</span>
+										<button class="pyesconfrim">Yes</button>
+										<button class="pnoconfrim">No</button>
+									</div>
+									<div class="previewline"></div>
+									<div id="preitem0" data-isclicked="false" class="previewitem"></div>
+								</div>
+								<div class="previewitemcont">
+									<div class="previewline"></div>
+									<div id="preitem1" data-isclicked="false" class="previewitem"></div>
+								</div>
+								<div class="previewitemcont">
+									<div class="previewline"></div>
+									<div id="preitem2" data-isclicked="false" class="previewitem"></div>
+								</div>
+								<div class="previewitemcont">
+									<div class="previewline"></div>
+									<div id="preitem3" data-isclicked="false" class="previewitem"></div>
+								</div>
+								
+							</div>
+							<div class="previewbtns">
+								<button class="savepreview"  >Save</button>
+								<button class="deletepreview" >Delete</button>
+								
+							</div>
 						</div>
 						
 
@@ -149,16 +181,31 @@
 					<div class="conts">
 						<label for="postpaperheader">wallpaper header<input type="checkbox" id="postpaperheader"></label>
 						<div id="postheaderimage" class="bgimage"> 
-							<input type="file" name="bgimage" id="posthinputimage" multiple placeholder="Add Background Image">
-							<div class="previewpoppup">preview
+							<input type="file" name="bgimage" id="postheadinputimage" data-preview="previewitemcont" class="bgimgfile" multiple placeholder="Add Background Image">
+							<span>preview</span>
+							<div class="previewpoppup">
 								<!-- ajax -->
-								<div id="postwallpreview"></div>
+								<div class="preview">
+									<div class="previewitemcont">
+										<div class="previewline"></div><div class="previewitem"></div>
+									</div><div class="previewitemcont">
+										<div class="previewline"></div><div class="previewitem"></div>
+									</div><div class="previewitemcont">
+										<div class="previewline"></div><div class="previewitem"></div>
+									</div><div class="previewitemcont">
+										<div class="previewline"></div><div class="previewitem"></div>
+									</div><div class="previewitemcont">
+										<div class="previewline"></div><div class="previewitem"></div>
+									</div><div class="previewitemcont">
+										<div class="previewline"></div><div class="previewitem"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="bgimages">
 						<!-- localstroage-->
-						<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
+						<input type="button" name="bgsubmit"  class="chooseimg" data-preview="previewitemcont" value="change background">
 						<div id="bglocalimages">
 						</div>
 						
@@ -169,11 +216,26 @@
 							<input type="checkbox" id="postpapercomment">
 						</label>
 						<div id="postheaderimage" class="bgimage"> 
-							<input type="file" name="bgimage" id="posthinputimage" multiple placeholder="Add Background Image">
-							<div class="previewpoppup">preview
-								<!-- ajax -->
-								<div id="postwallpreview"></div>
+							<input type="file" name="bgimage" id="postcommentinputimage" data-preview="previewitemcont" class="bgimgfile" multiple placeholder="Add Background Image">
+							<span>preview</span>
+						<div class="previewpoppup">
+							<!-- ajax -->
+							<div class="preview">
+								<div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
 								</div>
+							</div>
+						</div>
 						</div>
 					</div>
 					<div class="bgimages">
@@ -184,12 +246,81 @@
 					</div>
 
 					<div class="conts">
-						<label for="postpaperrandom">wallpaper random<input type="checkbox" id="postpaperrandom"></label>
-						<div id="postheaderimage" class="bgimage"> <input type="file" name="bgimage" id="posthinputimage" multiple placeholder="Add Background Image">
-							<div class="previewpoppup">preview
-								<!-- ajax -->
-								<div id="postwallpreview"></div>
+						<label for="postrandomhinputimage">wallpaper random header<input type="checkbox" id="postpaperhrandom"></label>
+						<div id="postrandom" class="bgimage"> <input type="file" class="bgimgfile" data-preview="previewitemcont" name="bgimage" id="postrandomhinputimage" multiple placeholder="Add Background Image">
+							<span>preview</span>
+						<div class="previewpoppup">
+							<!-- ajax -->
+							<div class="preview">
+								<div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div>
 							</div>
+						</div>
+						</div>
+					</div>
+					<div class="bgimages">
+						<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
+						<!-- localstroage-->
+						<div id="bglocalimages">
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+								<div class="displayimages"></div>
+						</div>
+					</div>
+					<div class="conts">
+						<label for="postrandomcinputimage">wallpaper commment random<input type="checkbox" id="postpapercrandom"></label>
+						<div id="postrandom" class="bgimage"> <input type="file" class="bgimgfile" data-preview="previewitemcont" name="bgimage" id="postrandomcinputimage" multiple placeholder="Add Background Image">
+							<span>preview</span>
+						<div class="previewpoppup">
+							<!-- ajax -->
+							<div class="preview">
+								<div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div>
+							</div>
+						</div>
 						</div>
 					</div>
 					<div class="bgimages">
@@ -226,11 +357,26 @@
 					<div class="conts">
 						<label for="postpaperrandomall">wallpaper random all<input type="checkbox" id="postpaperrandomall"></label>
 						<div id="postheaderimage" class="bgimage"> 
-							<input type="file" name="bgimage" id="posthinputimage" multiple placeholder="Add Background Image">
-							<div class="previewpoppup">preview
-								<!-- ajax -->
-								<div id="postwallpreview"></div>
+							<input type="file" name="bgimage" id="postrainputimage" data-preview="previewitemcont" class="bgimgfile" multiple placeholder="Add Background Image">
+							<span>preview</span>
+						<div class="previewpoppup">
+							<!-- ajax -->
+							<div class="preview">
+								<div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div><div class="previewitemcont">
+									<div class="previewline"></div><div class="previewitem"></div>
+								</div>
 							</div>
+						</div>
 						</div>
 					</div>
 					<div class="bgimages">

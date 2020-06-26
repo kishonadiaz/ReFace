@@ -1,7 +1,5 @@
 var port = chrome.runtime.connect({name:"reface"});
 
-
-
 function sendMessage(to,message={}){
   
   if(port != undefined)

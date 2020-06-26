@@ -12,7 +12,7 @@
 	},
 	"web_accessible_resources":
 	[
-		"js/libs/*",
+		"js/*",
 		"/*.png",
 		"/*.gif",
 		"/*.css",
@@ -28,7 +28,7 @@
 		{
 			"matches":["http://*/*","https://*/*"],
 			"css":["css/reface.css"],
-			"js":["js/worker.js","js/reface.js"]
+			"js":["js/jquery.js","js/worker.js","js/reface.js"]
 		}
 	],
 	"offline_enabled":true,
@@ -43,6 +43,7 @@
 		"<all_urls>",
 		"windows",
 		"storage",
+		"https://www.google.com/_/chrome/newtab*",
 		"file:///app/*/*",
 		"unlimitedStorage"
 	]
