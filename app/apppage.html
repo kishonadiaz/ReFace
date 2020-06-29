@@ -17,6 +17,9 @@
 <body>
 	<div class="colorevent" data-picker="" color="">
 	</div>
+	<div id="previewadd"></div>
+	<div id="saveimages"></div>
+	<div id="saveimagesdone"></div>
 	<nav>
 		<div id="navcont">
 			<div>
@@ -62,7 +65,16 @@
 						<div class="previewpoppup">
 							<!-- ajax -->
 
-							<div class="preview">
+							<div id="bgpreview" class="preview">
+								<!-- <div class="previewitemcont">
+									<div class="predelconfirm predelconfirmClose">
+										<span>Remove?</span>
+										<button class="pyesconfirm">Yes</button>
+										<button class="pnoconfirm">No</button>
+									</div>
+									<div class="previewline"></div>
+									<div id="preitem0" data-isclicked="false" data-side="left" class="previewitem"></div>
+								</div>
 								<div class="previewitemcont">
 									<div class="predelconfirm predelconfirmClose">
 										<span>Remove?</span>
@@ -70,23 +82,29 @@
 										<button class="pnoconfirm">No</button>
 									</div>
 									<div class="previewline"></div>
-									<div id="preitem0" data-isclicked="false" class="previewitem"></div>
+									<div id="preitem1" data-isclicked="false"  data-side="left" class="previewitem"></div>
 								</div>
 								<div class="previewitemcont">
+									<div class="predelconfirm predelconfirmClose">
+										<span>Remove?</span>
+										<button class="pyesconfirm">Yes</button>
+										<button class="pnoconfirm">No</button>
+									</div>
 									<div class="previewline"></div>
-									<div id="preitem1" data-isclicked="false" class="previewitem"></div>
+									<div id="preitem2" data-isclicked="false" data-side="left" class="previewitem"></div>
 								</div>
 								<div class="previewitemcont">
+									<div class="predelconfirm predelconfirmClose">
+										<span>Remove?</span>
+										<button class="pyesconfirm">Yes</button>
+										<button class="pnoconfirm">No</button>
+									</div>
 									<div class="previewline"></div>
-									<div id="preitem2" data-isclicked="false" class="previewitem"></div>
-								</div>
-								<div class="previewitemcont">
-									<div class="previewline"></div>
-									<div id="preitem3" data-isclicked="false" class="previewitem"></div>
-								</div>
+									<div id="preitem3" data-isclicked="false" data-side="left" class="previewitem"></div>
+								</div> -->
 								
 							</div>
-							<div class="previewbtns">
+							<div class="previewbtns previewbtnsClose">
 								<button class="savepreview"  >Save</button>
 								<button class="deletepreview" >Delete</button>
 								
@@ -97,10 +115,10 @@
 					</div>
 
 				</div>
-				<div id="bgimages" class="bgcontrol">
+				<div class="bgimages bgcontrol">
 							<!-- localstroage-->
 							<input type="button" name="bgsubmit" class="chooseimg" value="change background">
-							<div id="bglocalimages">
+							<div class="bglocalimages">
 								<div class="displayimages"></div>
 								<div class="displayimages"></div>
 								<div class="displayimages"></div>
@@ -186,19 +204,12 @@
 							<div class="previewpoppup">
 								<!-- ajax -->
 								<div class="preview">
-									<div class="previewitemcont">
-										<div class="previewline"></div><div class="previewitem"></div>
-									</div><div class="previewitemcont">
-										<div class="previewline"></div><div class="previewitem"></div>
-									</div><div class="previewitemcont">
-										<div class="previewline"></div><div class="previewitem"></div>
-									</div><div class="previewitemcont">
-										<div class="previewline"></div><div class="previewitem"></div>
-									</div><div class="previewitemcont">
-										<div class="previewline"></div><div class="previewitem"></div>
-									</div><div class="previewitemcont">
-										<div class="previewline"></div><div class="previewitem"></div>
-									</div>
+									
+								</div>
+								<div class="previewbtns previewbtnsClose">
+									<button class="savepreview"  >Save</button>
+									<button class="deletepreview" >Delete</button>
+								
 								</div>
 							</div>
 						</div>
@@ -206,7 +217,7 @@
 					<div class="bgimages">
 						<!-- localstroage-->
 						<input type="button" name="bgsubmit"  class="chooseimg" data-preview="previewitemcont" value="change background">
-						<div id="bglocalimages">
+						<div class="bglocalimages">
 						</div>
 						
 					</div>
@@ -218,30 +229,23 @@
 						<div id="postheaderimage" class="bgimage"> 
 							<input type="file" name="bgimage" id="postcommentinputimage" data-preview="previewitemcont" class="bgimgfile" multiple placeholder="Add Background Image">
 							<span>preview</span>
-						<div class="previewpoppup">
-							<!-- ajax -->
-							<div class="preview">
-								<div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
+							<div class="previewpoppup">
+								<!-- ajax -->
+								<div class="preview">
+								
+								</div>
+								<div class="previewbtns previewbtnsClose">
+									<button class="savepreview"  >Save</button>
+									<button class="deletepreview" >Delete</button>
+								
 								</div>
 							</div>
-						</div>
 						</div>
 					</div>
 					<div class="bgimages">
 							<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
 								<!-- localstroage-->
-							<div id="bglocalimages">
+							<div class="bglocalimages">
 							</div>		
 					</div>
 
@@ -249,30 +253,23 @@
 						<label for="postrandomhinputimage">wallpaper random header<input type="checkbox" id="postpaperhrandom"></label>
 						<div id="postrandom" class="bgimage"> <input type="file" class="bgimgfile" data-preview="previewitemcont" name="bgimage" id="postrandomhinputimage" multiple placeholder="Add Background Image">
 							<span>preview</span>
-						<div class="previewpoppup">
-							<!-- ajax -->
-							<div class="preview">
-								<div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
+							<div class="previewpoppup">
+								<!-- ajax -->
+								<div class="preview">
+									
+								</div>
+								<div class="previewbtns previewbtnsClose">
+										<button class="savepreview"  >Save</button>
+										<button class="deletepreview" >Delete</button>
+									
 								</div>
 							</div>
-						</div>
 						</div>
 					</div>
 					<div class="bgimages">
 						<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
 						<!-- localstroage-->
-						<div id="bglocalimages">
+						<div class="bglocalimages">
 								<div class="displayimages"></div>
 								<div class="displayimages"></div>
 								<div class="displayimages"></div>
@@ -306,19 +303,12 @@
 						<div class="previewpoppup">
 							<!-- ajax -->
 							<div class="preview">
-								<div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div>
+								
+							</div>
+							<div class="previewbtns previewbtnsClose">
+										<button class="savepreview"  >Save</button>
+										<button class="deletepreview" >Delete</button>
+									
 							</div>
 						</div>
 						</div>
@@ -326,7 +316,7 @@
 					<div class="bgimages">
 						<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
 						<!-- localstroage-->
-						<div id="bglocalimages">
+						<div class="bglocalimages">
 								<div class="displayimages"></div>
 								<div class="displayimages"></div>
 								<div class="displayimages"></div>
@@ -362,19 +352,11 @@
 						<div class="previewpoppup">
 							<!-- ajax -->
 							<div class="preview">
-								<div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div><div class="previewitemcont">
-									<div class="previewline"></div><div class="previewitem"></div>
-								</div>
+							</div>
+							<div class="previewbtns previewbtnsClose">
+										<button class="savepreview"  >Save</button>
+										<button class="deletepreview" >Delete</button>
+									
 							</div>
 						</div>
 						</div>
@@ -382,7 +364,7 @@
 					<div class="bgimages">
 						<input type="button" name="bgsubmit"  class="chooseimg" value="change background">
 						<!-- localstroage-->
-						<div id="bglocalimages">
+						<div class="bglocalimages">
 						</div>
 						
 					</div>

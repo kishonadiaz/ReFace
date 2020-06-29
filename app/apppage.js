@@ -44,8 +44,8 @@ HTMLElement.prototype.pseudoStyle = function(args={}){
   var istruea = false;
 	var istrueb = false;
 
-  ////console.log(window)
-  //console.log(args);
+  //////console.log(window)
+  ////console.log(args);
   // var className = "pseudoStyle" + UID.getNew();
   if(_this.getAttribute("id") === undefined){
 	  if(typeof args.id === "undefined"){
@@ -89,14 +89,14 @@ HTMLElement.prototype.pseudoStyle = function(args={}){
   }
   if(typeof args.attr != "undefined"){
     attr = ":"+args.attr;
-    ////console.log(args.attr);
+    //////console.log(args.attr);
     hasattr = true;
   }else if(typeof args.attr === "undefined"){
     hasattr = false;
   }
 
   
-  //console.log(_this.classList.contains(className));
+  ////console.log(_this.classList.contains(className));
    if(!_this.classList.contains(className))
   	_this.className +=  " "+className; 
 
@@ -111,32 +111,32 @@ HTMLElement.prototype.pseudoStyle = function(args={}){
   }
    // $(this).bind("click",function(ev){
     
-   //  ////console.log(ev);
-   //  //////console.log(ev.target.parentNode);
-   //  // ////console.log($(":after"));
+   //  //////console.log(ev);
+   //  ////////console.log(ev.target.parentNode);
+   //  // //////console.log($(":after"));
     
    //  //$(".myafter").addClass("myafter:active");
    //    _sheet.innerHTML += " .myafter"+"::after{z-index:1000000;background:purple;}";
    // })
    // $(this).bind("mouseover",function(ev){
    //  //$(_this).css("background","white");
-   //  ////console.log(ev.target);
+   //  //////console.log(ev.target);
    // });
   var checkstyle = String(_sheet.innerHTML).trim().split(" ");
 
   
- ////console.log(checkstyle);
+ //////console.log(checkstyle);
   // for(var [i,elem] of checkstyle.entries()){
-  //   ////console.log(elem);
+  //   //////console.log(elem);
   // }
   if(!String(_sheet).includes(className)){
-  	//console.log("here");
+  	////console.log("here");
   	if(className != "undefined"){
-  		//console.log(className)
+  		////console.log(className)
   	}
-  	//console.log(_sheet.textContent.length);
+  	////console.log(_sheet.textContent.length);
   	var _sheetarr = _sheet.textContent.split("l{}.");
-  	//console.log(_sheetarr);
+  	////console.log(_sheetarr);
   	for(var [i,text] of Object.entries(_sheetarr)){
 
   		
@@ -226,7 +226,7 @@ HTMLElement.prototype.pseudoStyle = function(args={}){
   	
 		
 
-    //console.log(stylesa,stylesb,stylechecka,stylecheckb);
+    ////console.log(stylesa,stylesb,stylechecka,stylecheckb);
 
     if(String(stylesa[className]).includes(stylechecka[className])){
     	istruea = true;
@@ -240,7 +240,7 @@ HTMLElement.prototype.pseudoStyle = function(args={}){
     }
   	var buildup = "";
 
-  	//console.log(stylecheckb,stylechecka)
+  	////console.log(stylecheckb,stylechecka)
   	for(var [i,item] of Object.entries(stylechecka)){
   		buildup+= "l{}."+item+"\n";
   	}
@@ -248,7 +248,7 @@ HTMLElement.prototype.pseudoStyle = function(args={}){
 		  buildup+= "l{}."+item+"\n";		
 		}
 
-		//console.log(buildup);
+		////console.log(buildup);
 		 _sheet.innerHTML = buildup;
     
     _head.appendChild(_sheet);
@@ -258,6 +258,103 @@ HTMLElement.prototype.pseudoStyle = function(args={}){
   return this;
 };
 
+
+var Storage = function(){
+
+	this.set = function(store,func){
+		
+		if(store instanceof Object)
+			if(func instanceof Function)
+				chrome.storage.local.set(store,func);
+		
+		if(store instanceof Array)
+			if(func instanceof Function)
+				chrome.storage.local.set(store,func);
+		
+		if(typeof store === "string" ||store instanceof String)
+			if(func instanceof Function)
+				chrome.storage.local.set([store],func);
+	}
+
+	this.get = function(key,func){
+		console.log(typeof key, 'here' instanceof String,key.toString());
+
+		var out;
+		if(key instanceof Object)
+			if(func instanceof Function)
+				out = chrome.storage.local.get(key,func);
+		
+		if(key instanceof Array)
+			if(func instanceof Function)
+				out = chrome.storage.local.get(key,func);
+		
+		if(typeof key === "string"){
+			console.log("here");
+			if(func instanceof Function){
+				console.log("sadfjhkjahsfd");
+				out = chrome.storage.local.get([key],func);
+			}
+		}
+		
+		if(key instanceof Object)
+			if(typeof func === undefined)
+				out = chrome.storage.local.get([key]);
+		
+		if(key instanceof Array)
+			if(typeof func === undefined)
+				out = chrome.storage.local.get([key]);
+		
+		if(typeof key === "string"){
+			console.log("oks");
+			if(typeof func === undefined)
+				out = chrome.storage.local.get([key]);
+		}
+
+		return out;
+	}
+
+	this.remove = function(key,func){
+		if(key instanceof Object){
+			if(func instanceof Function){
+				chrome.storage.local.remove(key,func)
+			}
+		}
+		if(key instanceof Array){
+			if(func instanceof Function){
+				chrome.storage.local.remove(key,func)
+			}
+		}
+		
+		if(typeof key === "string"){
+			if(func instanceof Function){
+				return chrome.storage.local.remove([key],func)
+			}
+		}
+		if(key instanceof Object){
+			if(typeof func === undefined){
+				chrome.storage.local.remove(key)
+			}
+		}
+		if(key instanceof Array){
+			if(typeof func === undefined){
+				chrome.storage.local.remove(key)
+			}
+		}
+		
+		if(typeof key === "string"){
+			if(typeof func === undefined){
+				return chrome.storage.local.remove([key])
+			}
+		}
+	}
+	this.clearall = function(){
+		chrome.storage.local.clear();
+	}
+
+	this.onChange = function(func){
+		chrome.storage.local.onChanged.addListener(func)
+	}
+}
 
 
 var Passer = function(starter){
@@ -274,15 +371,15 @@ var Passer = function(starter){
 
 			try{
 				if(Object.entries(val).length > 0){
-					////console.log(val);
+					//////console.log(val);
 					for(var [i,item] of Object.entries(val)){
-						////console.log(item);
+						//////console.log(item);
 						if(typeof item === "object"){
 							for(var[j,itemj] of Object.entries(item)){
 								
 								if(!String(itemj.url).includes("apppage")){
 									var id = itemj["tab"]["id"];
-									////console.log(itemj);
+									//////console.log(itemj);
 									this.ids[id] = id;
 								}
 							};
@@ -297,12 +394,12 @@ var Passer = function(starter){
 	}
 	this.refresh = function(){
 		var idss = {};
-		////console.log("ok",this.ids);
+		//////console.log("ok",this.ids);
 		if(Object.entries(this.ids).length > 0){
 			for(var[i,item] of Object.entries(this.ids)){
-				////console.log(item,i);
+				//////console.log(item,i);
 				idss[i] = item;
-				//////console.log(chrome.tabs.query({"active":false}));
+				////////console.log(chrome.tabs.query({"active":false}));
 			}
 		}
 		return idss;
@@ -318,7 +415,7 @@ function sendMessage(to,message={}){
 	
   if(port != undefined){
   	if(mess != undefined){
-			////console.log(mess.getMessage());
+			//////console.log(mess.getMessage());
 			reup = mess.refresh();
   	}
     port.postMessage({"appto":to,"appfrom":"appside","appmessage":message,"to":to,"from":"appside","message":message,"refresh":reup});
@@ -333,11 +430,11 @@ function messageListener(){
     		mess = new Passer(msg);
     		mess.getIDS(msg);
     	}
-      ////console.log(msg);
+      //////console.log(msg);
       mess.setMesseage(msg);
 
-      // ////console.log(port);
-      // ////console.log(chrome);
+      // //////console.log(port);
+      // //////console.log(chrome);
 
     });
   }
@@ -422,28 +519,28 @@ for(var[i,key] of Object.entries(pickerslist)){
 	})
  
 	var swatchbtn;
-	// ////console.log(pickers[key]._eventBindings);
+	// //////console.log(pickers[key]._eventBindings);
 	pickers[key]["update"] = function(){
 		var pic = this;
 		Object.entries(this.getRoot().swatches.children).forEach(function(item,key){
 			item[1].addEventListener("click",function(e){
-				// ////console.log(pic.getColor());
+				// //////console.log(pic.getColor());
 				pic.addSwatch(pic.getColor().toHEXA().toString());
 			})
 			item[1].addEventListener("mouseover",function(e){
-				// ////console.log("ok");
+				// //////console.log("ok");
 			})
 			item[1].addEventListener("mouseleave",function(e){
-				// ////console.log("ok");
+				// //////console.log("ok");
 			})
 		});
 
 	};
 
 	pickers[key].on('init',function(instance){
-		// ////console.log(instance);
-		// ////console.log(instance.getRoot().button);
-		// ////console.log(instance.getRoot().swatches);
+		// //////console.log(instance);
+		// //////console.log(instance.getRoot().button);
+		// //////console.log(instance.getRoot().swatches);
 		swatchbtn = createswatchbtn();
 
 		
@@ -453,20 +550,20 @@ for(var[i,key] of Object.entries(pickerslist)){
 		instance.getRoot().interaction["createswatch"] = swatchbtn;
 		instance._emit("createswatch");
 		var mycolor =new Object(instance._color);
-		// ////console.log(mycolor);
+		// //////console.log(mycolor);
 		instance._swatchColors.push({"el":swatchbtn,"color":mycolor});
 		//instance.addSwitch(mycolor);
-		// ////console.log(instance);
+		// //////console.log(instance);
 		instance._updateOutput();
 		instance.update();
 
 
 
 		//var obj = new Object(pickers[key]._bindEvents());
-		//////console.log(obj());
+		////////console.log(obj());
 		
 	});
-	//////console.log(pickers[key]._swatchColors);
+	////////console.log(pickers[key]._swatchColors);
 	pickers[key].on('hide',function(instance){
 		
 	});
@@ -476,13 +573,13 @@ for(var[i,key] of Object.entries(pickerslist)){
 		//instance.getRoot().swatches.insertBefore(swatchbtn,instance.getRoot().swatches.firstChild);
 		
 	});
-	// ////console.log(pickers[key]._updateOutput());
-	// ////console.log(pickers[key]._eventBindings);
-	// ////console.log(pickers[key]._bindEvents);
+	// //////console.log(pickers[key]._updateOutput());
+	// //////console.log(pickers[key]._eventBindings);
+	// //////console.log(pickers[key]._bindEvents);
 	// Object.entries(pickers[key].getRoot()["swatches"].children).forEach(function(e,i){
 		
 	// 	e.forEach(function(j,k){
-	// 		////console.log(j,k);
+	// 		//////console.log(j,k);
 	// 	})
 	// });
 	
@@ -514,14 +611,14 @@ for(var[i,key] of Object.entries(pickerslist)){
 	// });
 
 }
-////console.log(pickers);
+//////console.log(pickers);
 
 function openclosed(elem){
 	//elem
 	var picr =  document.querySelectorAll(".pickr");
 	// for(var i of picr){
 	// 	if(i.classList.contains("pickrclosed")){
-	// 		////console.log(i);
+	// 		//////console.log(i);
 	// 		i.classList.remove("pickrclosed");		
 	// 	}
 	// }
@@ -545,14 +642,14 @@ function openclosed(elem){
 		if(picr[i]!= undefined){
 			picr[i].setAttribute("data-parent",elem.classList.item(0));
 			if(picr[i].classList.contains("pickrclosed")){
-				////console.log(picr[i]);
+				//////console.log(picr[i]);
 				picr[i].classList.remove("pickrclosed");		
 			}
 		}
 	}
 
 	if(elem.classList.contains("bgcontrol")){
-		////console.log(elem);
+		//////console.log(elem);
 		if(!elem.classList.contains("bgcontrolopen")){
 			elem.classList.add("bgcontrolopen");
 		}
@@ -576,7 +673,7 @@ function closeopened(elem){
 			
 	// 	if(!i.classList.contains("pickrclosed")){
 	// 		i.classList.add("pickrclosed");
-	// 		////console.log(i);	
+	// 		//////console.log(i);	
 	// 	}
 	// }
 	if(elem.classList.contains("bgcolorpickerdiv")){
@@ -593,7 +690,7 @@ function closeopened(elem){
 		if(picr[i]!= undefined){
 			//picr[i].setAttribute("data-parent",elem.classList.item(0));
 			if(!picr[i].classList.contains("pickrclosed")){
-				////console.log(picr[i]);
+				//////console.log(picr[i]);
 				picr[i].classList.add("pickrclosed");		
 			}
 		}
@@ -621,7 +718,7 @@ function closeopened(elem){
 var labels = document.querySelectorAll("label");
 var labelbeef = document.querySelectorAll("label:before");
 var checkboxes = document.querySelectorAll("input[type='checkbox']");
-//////console.log(checkboxes,labels,labelbeef);
+////////console.log(checkboxes,labels,labelbeef);
 for(var i =0; i < (labels.length); i++){
 	if(labels[i].lastChild.tagName == "INPUT"){
 		labels[i].lastChild.addEventListener("change",function(ev){
@@ -666,10 +763,10 @@ var generalscroll = document.querySelector("#generals");
 
 
 // document.body.addEventListener("mouseover",function(e){
-// 	//////console.log(e.target);
+// 	////////console.log(e.target);
 // })
-// //////console.log(scroll);
-// //////console.log(window.getComputedStyle(scroll));
+// ////////console.log(scroll);
+// ////////console.log(window.getComputedStyle(scroll));
 var script = document.createElement("style");
 script.rel="sylesheet";
 script.type="text/css";
@@ -711,38 +808,39 @@ generalscroll.addEventListener("mouseleave",function(e){
 });
 
 // var ws = document.styleSheets[3];
-// //////console.log(ws);
+// ////////console.log(ws);
 // var sheet = new CSSStyleSheet({"cssRules":ws});
-// //////console.log(sheet);
-// //////console.log(ws.rules[52]);
-// //////console.log(ws.insertRule('#draggables::-webkit-scrollbar-track-piece{ width:40px!important;}',0));
+// ////////console.log(sheet);
+// ////////console.log(ws.rules[52]);
+// ////////console.log(ws.insertRule('#draggables::-webkit-scrollbar-track-piece{ width:40px!important;}',0));
 var count = 0;
+var columcount = 0;
 var clicks = {};
 var openpreview = [];
 function savedelaction(e){
 
-	// console.log(e.target.getBoundingClientRect().left,e.clientX,,,(e.target.getBoundingClientRect().right-e.target.getBoundingClientRect().left))
-		console.log(e.target,i);
+	// //console.log(e.target.getBoundingClientRect().left,e.clientX,,,(e.target.getBoundingClientRect().right-e.target.getBoundingClientRect().left))
+		//console.log(e.target,i);
 		if(e.type === "click"){
 		
-			console.log(e,"clicked");
+			//console.log(e,"clicked");
 			if(e.target.getAttribute("data-isclicked") === "false"){
 				if( e.clientX >= e.target.getBoundingClientRect().right-10){
 					e.target.pseudoStyle({"element":"after","temp":`background:rgba(224, 41, 41, 0.14);width:unset;left:0;`});
 					e.target.pseudoStyle({"element":"before","temp":`display:none;`});
 					e.target.setAttribute("data-isclicked",true);
 					e.target.setAttribute("data-side","right");
-					console.log(e.target.previousElementSibling.getAttribute("class"));
+					//console.log(e.target.previousElementSibling.getAttribute("class"));
 					if(e.target.previousElementSibling.getAttribute("class") === "previewline"){
 
 						e.target.previousElementSibling.innerHTML = "CLEAR";
-						console.log(e.target.previousElementSibling.style);
+						//console.log(e.target.previousElementSibling.style);
 						e.target.previousElementSibling.style.cssText = "transform: translateY(-17px);";
 						openpreview.push(e.target.previousElementSibling);
 						e.target.previousElementSibling.setAttribute("data-openedby",e.target.getAttribute("id"));
 						
 					}
-					console.log(e.target.parentElement.firstElementChild);
+					//console.log(e.target.parentElement.firstElementChild);
 					if(e.target.parentElement.firstElementChild.classList.contains("predelconfirm")){
 						if(e.target.parentElement.firstElementChild.classList.contains("predelconfirmClose"))
 							e.target.parentElement.firstElementChild.classList.remove("predelconfirmClose");
@@ -758,6 +856,10 @@ function savedelaction(e){
 								kitems.addEventListener("click",function(ek){
 									if(!e.target.parentElement.firstElementChild.classList.contains("predelconfirmClose"))
 										e.target.parentElement.firstElementChild.classList.add("predelconfirmClose");
+										e.target.pseudoStyle({"element":"before","temp":`width:initial;`});
+										e.target.previousElementSibling.innerHTML = "";
+										e.target.previousElementSibling.style.cssText = "transform: translateY(0px);";
+										e.target.setAttribute("data-isclicked",false);
 								});
 							}
 						}
@@ -774,7 +876,7 @@ function savedelaction(e){
 					if(e.target.previousElementSibling.getAttribute("class") === "previewline"){
 
 						e.target.previousElementSibling.innerHTML = "CLEAR";
-						console.log(e.target.previousElementSibling.style);
+						//console.log(e.target.previousElementSibling.style);
 						e.target.previousElementSibling.style.cssText = "transform: translateY(-17px);";
 						e.target.previousElementSibling.setAttribute("data-openedby",e.target.getAttribute("id"));
 						
@@ -789,7 +891,7 @@ function savedelaction(e){
 		
 		if(e.type === "mouseover"){
 			e.target.addEventListener("mousemove",function(ev){
-				//console.log(clicks);
+				////console.log(clicks);
 				
 				if(ev.target.getAttribute("data-isclicked")=== "false"){	
 					if( ev.clientX >= ev.target.getBoundingClientRect().right-10){
@@ -820,7 +922,7 @@ function savedelaction(e){
 				e.target.pseudoStyle({"element":"after","temp":`background:initial;`});
 				e.target.pseudoStyle({"element":"before","temp":`background:initial;`});
 						e.target.addEventListener("mousemove",function(ev){
-							console.log(clicks);
+							
 							
 							
 						});
@@ -830,9 +932,9 @@ function savedelaction(e){
 }
 
 function clearbtn(e){
-	//console.log(e.target.getAttribute("data-openedby"),e)
+	////console.log(e.target.getAttribute("data-openedby"),e)
 	var pre = document.querySelector(`#${e.target.getAttribute("data-openedby")}`);
-	console.log(pre);
+	//console.log(pre);
 	if(pre.getAttribute("data-isclicked") === "true"){
 		if(pre.getAttribute("data-side") === "right"){
 			pre.pseudoStyle({"element":"after","temp":`display:initial;`});
@@ -852,7 +954,7 @@ function clearbtn(e){
 }
 var prviewclear = function(reader){
 	var previews = document.querySelectorAll(".previewline");
-	console.log(previews);
+	//console.log(previews);
 	for(var i of previews){
 		// i.pseudoStyle({"element":"before","temp":`background:red;`})
 		// i.addEventListener("mouseover",clearbtn);
@@ -863,7 +965,7 @@ var prviewclear = function(reader){
 }
 var savedordelete = function(reader){
 	var previews = document.querySelectorAll(".previewitem");
-	console.log(previews);
+	//console.log(previews);
 	for(var i of previews){
 		// i.pseudoStyle({"element":"before","temp":`background:red;`})
 		i.addEventListener("mouseover",savedelaction);
@@ -874,34 +976,73 @@ var savedordelete = function(reader){
 	}
 }
 
+var store= new Storage()
+var savethis = {};
+	// store.set({"test":"that"},function(result){
+	// 	console.log("this works");
+	// });
+	// store.get("test",function(result){
+	// 	console.log("this works",result);
+	// })
+	// store.remove("test");
+function saveimge(where,to,store){
+	store.set({wherefrom:where,whereto:to,store:store});
+}
 
+function galleryimg(){
 
+}
 
 var previewimages = [];
-function previews(target,file){
+var loadedpreview = new Event('change',{"bubbles":true ,"cancelable":false});
+var previewAdd = document.querySelector("#previewadd");
+function previews(target,file,length,rowcount){
 	if(target.files && target.files[0]){
 		var reader = new FileReader();
 		var e  = target.getAttribute("data-preview");
-		console.log(file);
+		//console.log(file);
 		//console.log(event,target,target.nextElementSibling.nextElementSibling);
 		var item;
 		var previewcont = target.nextElementSibling.nextElementSibling;
-
+		var gparent = target.parentElement.parentElement;
+		var imgcont = gparent.nextElementSibling.children[1];
+		console.log(gparent.nextElementSibling.children,gparent.previousElementSibling.children[2]);
+		imgcont.setAttribute("data-previewitem","imgcont"+target.getAttribute("id"));
+		imgcont.setAttribute("id","imgshowcont"+target.getAttribute("id"));
 		if(previewcont.classList.contains("previewpoppup")){
-			console.log(previewcont);
+			//console.log(previewcont);
 			var previewitem=  previewcont.children[0];
-			console.log(previewitem)
-
+			var previewbtns=  previewcont.children[1];
+			//console.log(previewitem)
+			//console.log("ddsa",previewitem.classList.contains("previewbtns"))
 			if(previewitem.classList.contains("preview")){
-					 
+					 if(previewitem.children.length >= 0){
+					 	count = (previewitem.children.length);
+					 }
 
 						reader.addEventListener('load',function(e){
-								previewitem.innerHTML += `<div id="pre${count}"  class="previewitemcont">
+							console.log(e,target.files);
+								previewitem.innerHTML += `<div id="pre${count}r${target.getAttribute("rowcount")}" data-imagecontparent="${imgcont.getAttribute("data-previewitem")}" data-atrow="${target.getAttribute("rowcount")}" data-img="${e.target.result}" data-iteration="${count}" class="previewitemcont">
+									<div class="predelconfirm predelconfirmClose">
+										<span>Remove?</span>
+										<button class="pyesconfirm">Yes</button>
+										<button class="pnoconfirm">No</button>
+									</div>
 							 		<div class="previewline"></div>
-							 		<div id="preitem${count}" data-right-isclicked="false" data-left-isclicked="false" style="background:url(${e.target.result})" data-count="${count}" class="previewitem"></div>
+							 		<div id="preitem${count}r${target.getAttribute("rowcount")}" filename="${target.files[count].name}" lastModified="${target.files[count].lastModified}" lastModifiedDate="${target.files[count].lastModifiedDate}" data-timestamp="${e.timeStamp}" data-imagecont="${imgcont.getAttribute("id")}" data-atrow="${target.getAttribute("rowcount")}" data-iteration="${count}" data-isclicked="false" data-side="left" style="background:url(${e.target.result})" data-img="${e.target.result}" data-count="${count}" class="previewitem"></div>
 							 	</div>`;
 							 	count++;
+							 	
+							 	previewAdd.dispatchEvent(loadedpreview);
+
+							 	if(previewbtns.classList.contains("previewbtns")){
+							 		if(previewbtns.classList.contains("previewbtnsClose")){
+							 			previewbtns.classList.remove("previewbtnsClose")
+							 		}
+							 	}
 						});
+
+
 						reader.readAsDataURL(file);	
 						previewimages.push(reader);
 
@@ -913,35 +1054,119 @@ function previews(target,file){
 	return previewimages;
 }
 function outi(e){
-				console.log(item,file,e);
+				//console.log(item,file,e);
 				if(item != undefined){
 					
 					item.style.background = "url("+e.target.result+")";
 
 				}				
 			}
-
+var savetheseimages = [];
+var saveevent = new Event('change',{"bubbles":true ,"cancelable":false});
+var saveeventdone = new Event('change',{"bubbles":true ,"cancelable":false});
+var savediv = document.querySelector("#saveimages");
+var savedivdone = document.querySelector("#saveimagesdone");
+var elementstosaves = {};
+var b={}
+var r = {}
 function savepreviewimages(r){
+
+
+	console.log(r);
+
 	var save = document.querySelectorAll(".savepreview");
-	var preview = document.querySelectorAll(".previewitem");
-	console.log(preview);
+	//var preview = document.querySelectorAll(".previewitem");
+	//console.log(save[0].parentElement.previousElementSibling);
 	for(var [i,saveing] of Object.entries(save)){
 		saveing.addEventListener("click",function(e){
+			var childprev = e.target.parentElement.previousElementSibling.children;
+			console.log(childprev);
+			console.log(e);
+			
+			
 			var preview = document.querySelectorAll(".previewitem");
-			for(var [i, prevs] of Object.entries(preview)){
-				if(prevs.getAttribute("data-isclicked")=== "true"){
-					if(prevs.getAttribute("data-side") === "left"){
+			for(var [i, prevs] of Object.entries(childprev)){
+				//console.log(preview[i],prevs);
+				
+				
+				if(prevs.children[2].getAttribute("data-isclicked")=== "true"){
+					if(prevs.children[2].getAttribute("data-side") === "left"){
 						/*saving*/
 						//save stuff to local and or server;
+						console.log();
+						prevs.children[2].pseudoStyle({"element":"before","temp":`background:rgba(41, 224, 41, 0.14);width:unset;right:0;`});
+						prevs.children[2].pseudoStyle({"element":"after","temp":`display:none;`});
+
+						savetheseimages.push(prevs.children[2].getAttribute("data-img"));
+
+						// window.setTimeout(async ()=>{
+						// 	console.log("e");
+						// 	savediv.dispatchEvent(saveevent);
+						// },3000);
+
 					}
-					if(prevs.getAttribute("data-side") === "right"){
+					if(prevs.children[2].getAttribute("data-side") === "right"){
 						// remove from priview no save
-						console.log(prevs)
+
+					 	prevs.children[2].previousElementSibling.innerHTML = "Removing";
+					 	prevs.children[2].parentElement.style.cssText = "display:none";
+					 	
+					 	
+						//prevs.parentElement.remove();
+						
+						//count = (previewitem.children.length);
+						//prevs.remove()
+					}
+				}else{
+					//console.log(prevs);
+					if(prevs.children[2].getAttribute("data-side") === "left"){
+						/*saving*/
+						//save stuff to local and or server;
+						
+						prevs.children[2].pseudoStyle({"element":"before","temp":`background:rgba(41, 224, 41, 0.14);width:unset;right:0;`});
+						prevs.children[2].pseudoStyle({"element":"after","temp":`display:none;`});
+						prevs.children[2].setAttribute("data-isclicked",true);
+						prevs.children[2].previousElementSibling = "saving";
+						savetheseimages.push(prevs.children[2].getAttribute("data-img"));
+
+						savedivdone.addEventListener("change",function(e){
+							console.log("finish up");
+						});
+						var row = prevs.children[2].getAttribute("data-atrow");
+						
+						if(prevs.getAttribute("data-atrow") == row){
+							b["r"+row] = row;
+							// console.log(b,row);
+							var n = prevs.getAttribute("id");
+							// console.log(n);
+							if(String(n).includes("r"+row)){
+								console.log(prevs.children);
+							}
+							//childprev["files"] = b;
+							// if(childprev[i+1]!= undefined){
+							// 	if(n != childprev[i+1].getAttribute("id")){
+							// 		r[n] ={t:childprev[n][0]};
+							// 	}
+							// }
+							// b[row] = r[n];
+							// console.log(r);
+							// var t = r;
+							// console.log(r);
+							elementstosaves[row]=childprev;
+							
+						}
+						//console.log(saveevent);
+						window.setTimeout(async ()=>{
+							
+							savediv.dispatchEvent(saveevent);
+						},3000);
 					}
 				}
+				
 			}
 		})
 	}
+	saveevent["currenta"] = elementstosaves;
 }
 
 function ajaxcall(file,j={}){
@@ -953,7 +1178,7 @@ function ajaxcall(file,j={}){
 	try{
 		if(files.length > 0){
 			for(var [i,item] of Object.entries(files)){
-				console.log(i,item);
+				//console.log(i,item);
 			}	
 		}
 	}catch(e){
@@ -971,7 +1196,7 @@ function ajaxcall(file,j={}){
 		processData:false,
 
 		beforeSend:function(data,textstatus, jqXHR){
-			//console.log("before",data,textstatus,jqXHR);
+			////console.log("before",data,textstatus,jqXHR);
 			try{
 				j.beforeSend();
 			}catch(e){
@@ -979,7 +1204,7 @@ function ajaxcall(file,j={}){
 			}
 		},
 		success: function(data,textStatus,jqXHR){
-			//console.log(data,textstatus,jqXHR);
+			////console.log(data,textstatus,jqXHR);
 			try{
 				j.success();
 
@@ -988,14 +1213,14 @@ function ajaxcall(file,j={}){
 			}
 		},
 		complete:function(data,textStatus,jqXHR){
-			//console.log(data,textStatus, jqXHR);
+			////console.log(data,textStatus, jqXHR);
 			try{
 				j.complete();
 			}catch(e){
 
 			}
 		},error:function(throws){
-			console.log(throws);
+			//console.log(throws);
 
 		}	
 	});
@@ -1003,12 +1228,17 @@ function ajaxcall(file,j={}){
 
 function getimages(){
 	var images = document.querySelectorAll(".bgimgfile");
+	
+	
 	for(var [i,item] of Object.entries(images)){
-		console.log(i,item);
+		//console.log(i,item);
+		item.setAttribute("rowcount",i);
 		item.addEventListener("change",function(e){
-			console.log(e.target.files,e.target.result);
-			for(var [i,file] of Object.entries(e.target.files)){
-				var imgarray = previews(this,file)
+			//console.log(e.target.files,e.target.result);
+			var length = e.target.files.length;
+			for(var [j,file] of Object.entries(e.target.files)){
+				//console.log(i);
+				var imgarray = previews(this,file,length,i);
 				
 			}
 
@@ -1017,9 +1247,52 @@ function getimages(){
 }
 
 getimages();
-if(previewimages != undefined){
-	savedordelete(previewimages);
-	prviewclear();
-	savepreviewimages(previewimages)
-}
+previewAdd.addEventListener("change",function(){
+	if(previewimages != undefined){
+		savedordelete(previewimages);
+		prviewclear();
+		savepreviewimages(previewimages)
+		var q = document.querySelectorAll(".preview");
+		var leftsave = [];
+		savediv.addEventListener("change",function(e){
+			console.log(e);
+			for(var [i,elem] of Object.entries(e.currenta)){
+				console.log(elem,i);
+				for(var [j,elemj] of Object.entries(elem)){
+					//console.log(elemj)
+					if(elemj.children[2].getAttribute("data-side") === "left"){
+						console.log(elemj);
+						leftsave.push(elemj.children[2].getAttribute("data-img"));
+						var g = document.querySelector("#"+elemj.getAttribute("id"))
+						console.log(g);
+						var name = String(g.children[2].getAttribute("filename")).split(".");
+						console.log(name[0]);
+						g.innerHTML += `<div id="${name[0]}" class="displayimages" filename="${g.children[2].getAttribute("filename")}" lastModified="${g.children[2].getAttribute("lastModified")}" lastModifiedDate="${g.children[2].getAttribute("lastModifiedDate")}" timestamp="${g.children[2].getAttribute("timestamp")}"></div>`;
+					}
+				}
+				// if(i.getAttribute("data-side") === "left"){
+				// 	//leftsave.push()
+				// 	console.log(i);
+				// }
+			}
+		})
+		// for(var [i,item] of Object.entries(q)){
+		// 	item.addEventListener("change",function(e,r){
+		// 		console.log(e.target,e.target.children[0]);
+		// 		for(var[j,jitem] of Object.entries(e.target.children)){
+		// 			savedivdone.dispatchEvent(saveeventdone);
+		// 			console.log(jitem.children[2]);
+		// 		}
+		// 	});
+		// }
+		
+	}
+})
+
+// if(previewimages != undefined){
+// 		savedordelete(previewimages);
+// 		prviewclear();
+// 		savepreviewimages(previewimages)
+// }
+
 

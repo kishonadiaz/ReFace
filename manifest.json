@@ -16,6 +16,7 @@
 		"/*.png",
 		"/*.gif",
 		"/*.css",
+		"alarms",
 		"images/*.png",
 	     "javascript/*.js",
 	     "html/* .html",
