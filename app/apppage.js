@@ -1267,7 +1267,7 @@ previewAdd.addEventListener("change",function(){
 						console.log(g);
 						var name = String(g.children[2].getAttribute("filename")).split(".");
 						console.log(name[0]);
-						g.innerHTML += `<div id="${name[0]}" class="displayimages" filename="${g.children[2].getAttribute("filename")}" lastModified="${g.children[2].getAttribute("lastModified")}" lastModifiedDate="${g.children[2].getAttribute("lastModifiedDate")}" timestamp="${g.children[2].getAttribute("timestamp")}"></div>`;
+						//g.innerHTML += `<div id="${name[0]}" class="displayimages" filename="${g.children[2].getAttribute("filename")}" lastModified="${g.children[2].getAttribute("lastModified")}" lastModifiedDate="${g.children[2].getAttribute("lastModifiedDate")}" timestamp="${g.children[2].getAttribute("timestamp")}"></div>`;
 					}
 				}
 				// if(i.getAttribute("data-side") === "left"){
